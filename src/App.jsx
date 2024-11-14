@@ -8,6 +8,8 @@ import Courses from './pages/Courses'
 import Careers from './pages/Careers'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import AcademicEditing from './components/AcademicEditing'
+import BookEditing from './components/BookEditing'
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
         <Route path='/services' element={<Services />} />
         <Route path='/courses' element={<Courses />} />
         <Route path='/careers' element={<Careers />} />
+        <Route path='/academic-editing' element={<AcademicEditing />} />
+        <Route path='/book-editing' element={<BookEditing />} />
       </Routes>
       <Footer />
     </Router>
