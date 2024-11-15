@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import AcademicEditing from './components/AcademicEditing'
 import BookEditing from './components/BookEditing'
+import Contact from './components/Contact'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/careers' element={<Careers />} />
         <Route path='/academic-editing' element={<AcademicEditing />} />
         <Route path='/book-editing' element={<BookEditing />} />
+        <Route path='/book-an-appointment' element={<Contact />} />
       </Routes>
       <Footer />
     </Router>

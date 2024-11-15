@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ChatIcon } from "@heroicons/react/outline"; // Importing Heroicons ChatIcon
 import b1 from '../assets/b1.jpg';
 import b2 from '../assets/b2.jpg';
@@ -17,6 +17,8 @@ import b14 from '../assets/b14.jpg';
 import b15 from '../assets/b15.jpg';
 import b16 from '../assets/b16.jpg';
 import b17 from '../assets/b17.jpg';
+import AOS from 'aos';  // Import AOS
+import 'aos/dist/aos.css';  // Import AOS CSS
 
 const books = [
   { title: 'Before You Climb Any Higher', author: 'by Jonathan McReynolds', imgUrl: b1 },
@@ -39,22 +41,31 @@ const books = [
 ];
 
 const Stories = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });  // Initialize AOS with a duration of 1 second
+    AOS.refresh();  // Refresh AOS to apply animations
+  }, []);
+
   return (
     <>
-      <div className="bg-gray-100 text-center py-16">
+      <div className="bg-gray-100 text-center py-16" data-aos="fade-up" data-aos-once="true">
         <h3 className="text-4xl text-emerald-800 font-bold">Success Stories</h3>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Title Section */}
-        <h1 className="text-3xl font-semibold text-center mb-8">Book Gallery</h1>
+        <h1 className="text-3xl font-semibold text-center mb-8" data-aos="fade-up" data-aos-once="true">
+          Book Gallery
+        </h1>
 
         {/* Book Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {books.map((book, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <img src={book.imgUrl} alt={book.title} className="w-80 h-auto object-cover mb-4 rounded-md" />
-              <h3 className="text-2xl text-center">{book.title}</h3>
+            <div key={index} className="group flex flex-col items-center" data-aos="fade-up" data-aos-delay={`${index * 100}`} data-aos-once="true">
+              <div className="relative w-80 h-auto mb-4 rounded-lg overflow-hidden shadow-xl group-hover:scale-105 group-hover:shadow-2xl transition-transform duration-500 ease-in-out">
+                <img src={book.imgUrl} alt={book.title} className="w-full h-full object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-300 ease-in-out" />
+              </div>
+              <h3 className="text-2xl text-center font-semibold">{book.title}</h3>
               <p className="text-sm text-center text-gray-500">{book.author}</p>
             </div>
           ))}
@@ -62,10 +73,12 @@ const Stories = () => {
       </div>
 
       <div className="container mx-auto p-6 bg-gray-50">
-        <h3 className="text-4xl text-emerald-800 font-bold text-center py-10">Testimonials</h3>
+        <h3 className="text-4xl text-emerald-800 font-bold text-center py-10" data-aos="fade-up" data-aos-once="true">
+          Testimonials
+        </h3>
         <div className="flex flex-wrap justify-between gap-6 text-center">
           {/* Left Vertical Testimonial Box */}
-          <div className="w-full md:w-1/4 bg-blue-50 p-6 rounded-lg shadow-lg flex flex-col justify-between">
+          <div className="w-full md:w-1/4 bg-blue-50 p-6 rounded-lg shadow-lg flex flex-col justify-between" data-aos="fade-right" data-aos-once="true">
             {/* Testimonial Icon */}
             <div className="flex justify-center mb-4">
               <ChatIcon className="h-10 w-10 text-emerald-800" />
@@ -79,7 +92,7 @@ const Stories = () => {
           {/* Right Side: 2 Vertical Testimonial Boxes */}
           <div className="w-full md:w-2/3 flex flex-col gap-6">
             {/* First Vertical Testimonial Box */}
-            <div className="bg-green-50 p-6 rounded-lg shadow-lg flex-grow flex flex-col items-center justify-center">
+            <div className="bg-green-50 p-6 rounded-lg shadow-lg flex-grow flex flex-col items-center justify-center" data-aos="fade-left" data-aos-once="true">
               {/* Testimonial Icon */}
               <div className="flex justify-center mb-4">
                 <ChatIcon className="h-10 w-10 text-emerald-800" />
@@ -91,7 +104,7 @@ const Stories = () => {
             </div>
 
             {/* Second Vertical Testimonial Box */}
-            <div className="bg-purple-50 p-6 rounded-lg shadow-lg flex-grow flex flex-col items-center justify-center">
+            <div className="bg-purple-50 p-6 rounded-lg shadow-lg flex-grow flex flex-col items-center justify-center" data-aos="fade-left" data-aos-once="true">
               {/* Testimonial Icon */}
               <div className="flex justify-center mb-4">
                 <ChatIcon className="h-10 w-10 text-emerald-800" />
@@ -105,7 +118,7 @@ const Stories = () => {
         </div>
 
         {/* Full Width Testimonial Box below */}
-        <div className="mt-8 bg-gray-100 p-6 rounded-lg shadow-lg w-full text-center">
+        <div className="mt-8 bg-gray-100 p-6 rounded-lg shadow-lg w-full text-center" data-aos="fade-up" data-aos-once="true">
           {/* Testimonial Icon */}
           <div className="flex justify-center mb-4">
             <ChatIcon className="h-10 w-10 text-emerald-800" />

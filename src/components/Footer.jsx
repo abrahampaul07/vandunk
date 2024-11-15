@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"; // Assuming your logo is stored here
 import backgroundImage from "../assets/footer.jpg"; // Import your background image
 
@@ -23,9 +24,9 @@ function Footer() {
 
         {/* Right Side: Button to Book an Appointment */}
         <div className="flex items-center justify-center md:justify-end">
-          <button className="px-6 py-3 bg-yellow-200 text-dark font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none">
+          <Link to="/book-an-appointment" className="px-6 py-3 bg-yellow-200 text-dark font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none">
             Book an Appointment
-          </button>
+          </Link>
         </div>
       </div>
 

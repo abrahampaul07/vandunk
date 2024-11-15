@@ -5,6 +5,11 @@ import logo from "../assets/logo.png";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleLinkClick = () => {
+    // Close the mobile menu when a link is clicked
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div>
       {/* Top section (phone and email) visible on all screen sizes */}
@@ -28,22 +33,40 @@ const Navbar = () => {
 
             {/* Desktop navlinks (centered) */}
             <div className="hidden md:flex flex-grow justify-center space-x-8">
-              <Link to="/" className="text-gray-800 hover:text-emerald-800 transition-colors duration-300">
+              <Link
+                to="/"
+                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
                 Home
               </Link>
-              <Link to="/about" className="text-gray-800 hover:text-emerald-800 transition-colors duration-300">
+              <Link
+                to="/about"
+                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
                 About
               </Link>
-              <Link to="/success-stories" className="text-gray-800 hover:text-emerald-800 transition-colors duration-300">
+              <Link
+                to="/success-stories"
+                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
                 Success Stories
               </Link>
-              <Link to="/services" className="text-gray-800 hover:text-emerald-800 transition-colors duration-300">
+              <Link
+                to="/services"
+                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
                 Services
               </Link>
-              <Link to="/courses" className="text-gray-800 hover:text-emerald-800 transition-colors duration-300">
+              <Link
+                to="/courses"
+                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
                 Courses
               </Link>
-              <Link to="/careers" className="text-gray-800 hover:text-emerald-800 transition-colors duration-300">
+              <Link
+                to="/careers"
+                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
                 Careers
               </Link>
             </div>
@@ -51,7 +74,7 @@ const Navbar = () => {
             {/* Book an Appointment button on the right */}
             <div className="hidden md:flex">
               <Link
-                to="/book-appointment"
+                to="/book-an-appointment"
                 className="bg-yellow-200 font-semibold text-dark py-2 px-4 rounded-lg hover:bg-gray-400 transition-all duration-300"
               >
                 Book an Appointment
@@ -74,27 +97,52 @@ const Navbar = () => {
             isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
           }`}
         >
-          <Link to="/" className="block text-gray-800 hover:text-emerald-800 py-2 transition-colors duration-300">
+          <Link
+            to="/"
+            onClick={handleLinkClick} // Close menu when clicked
+            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
             Home
           </Link>
-          <Link to="/about" className="block text-gray-800 hover:text-emerald-800 py-2 transition-colors duration-300">
+          <Link
+            to="/about"
+            onClick={handleLinkClick} // Close menu when clicked
+            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
             About
           </Link>
-          <Link to="/success-stories" className="block text-gray-800 hover:text-emerald-800 py-2 transition-colors duration-300">
+          <Link
+            to="/success-stories"
+            onClick={handleLinkClick} // Close menu when clicked
+            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
             Success Stories
           </Link>
-          <Link to="/services" className="block text-gray-800 hover:text-emerald-800 py-2 transition-colors duration-300">
+          <Link
+            to="/services"
+            onClick={handleLinkClick} // Close menu when clicked
+            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
             Services
           </Link>
-          <Link to="/courses" className="block text-gray-800 hover:text-emerald-800 py-2 transition-colors duration-300">
+          <Link
+            to="/courses"
+            onClick={handleLinkClick} // Close menu when clicked
+            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
             Courses
           </Link>
-          <Link to="/careers" className="block text-gray-800 hover:text-emerald-800  py-2 transition-colors duration-300">
+          <Link
+            to="/careers"
+            onClick={handleLinkClick} // Close menu when clicked
+            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
             Careers
           </Link>
           {/* Mobile Book Appointment Button */}
           <Link
             to="/book-appointment"
+            onClick={handleLinkClick} // Close menu when clicked
             className="block bg-yellow-200 font-semibold text-dark py-2 px-4 rounded-lg hover:bg-gray-400 transition-all duration-300"
           >
             Book an Appointment
