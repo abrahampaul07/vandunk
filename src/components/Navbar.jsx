@@ -15,8 +15,8 @@ const Navbar = () => {
       {/* Top section (phone and email) visible on all screen sizes */}
       <div className="bg-emerald-800 text-white py-2 px-4 flex justify-center md:justify-start items-center">
         <div className="text-sm flex flex-col md:flex-row md:space-x-4 text-center md:text-left">
-          <span>📞 (845) 775-9351</span>
-          <span className="mt-2 md:mt-0">📧 pierce@vandunkedits.com</span>
+          <a href="tel:(845) 775-9351">📞 (845) 775-9351</a>
+          <a href="mailto:pierce@vandunkedits.com" className="mt-2 md:mt-0">📧 pierce@vandunkedits.com</a>
         </div>
       </div>
 

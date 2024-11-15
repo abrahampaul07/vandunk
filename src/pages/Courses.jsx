@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import course from '../assets/course.jpg'; // Make sure the path to the image is correct
+import course from '../assets/course.jpg'; // Ensure the path to the image is correct
 import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS CSS
 
@@ -18,6 +18,7 @@ const Courses = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
 
+  // Handle form input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -26,19 +27,36 @@ const Courses = () => {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsModalOpen(true); // Open the modal when form is submitted
-    console.log(formData);
+    console.log(formData); // Log form data (you can replace it with actual submission logic)
+
+    // Open modal upon successful submission
+    setIsModalOpen(true);
+
+    // Clear form data after submission
+    setFormData({
+      name: '',
+      email: '',
+      country: '',
+      gender: '',
+      phone: '',
+      week: '',
+      level: '',
+      year: '',
+      class: ''
+    });
   };
 
+  // Close the modal
   const closeModal = () => {
     setIsModalOpen(false); // Close the modal
   };
 
   useEffect(() => {
-    AOS.init({ duration: 1000 }); // Initialize AOS with 1 second duration for animations
-    AOS.refresh(); // Refresh AOS to apply animations
+    AOS.init({ duration: 1000 }); // Initialize AOS animations
+    AOS.refresh(); // Refresh AOS after loading
   }, []);
 
   return (

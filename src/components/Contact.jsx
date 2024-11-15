@@ -1,100 +1,121 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-import AOS from 'aos'; // Import AOS
-import 'aos/dist/aos.css'; // Import AOS styles
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Contact = () => {
+  // State for form inputs
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const [popupVisible, setPopupVisible] = useState(false); // State for popup visibility
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    // Show popup
+    setPopupVisible(true);
+
+    // Clear form data
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
   };
 
   useEffect(() => {
-    AOS.init({ duration: 1000 }); // Initialize AOS with a 1-second duration
-    AOS.refresh(); // Refresh AOS after content load
+    AOS.init({ duration: 1000 });
+    AOS.refresh();
   }, []);
 
   return (
     <>
-      {/* Prevent Horizontal Scrolling by setting overflow-x-hidden on the body */}
       <div className="overflow-x-hidden">
-        {/* Contact Header Section with fade-up animation */}
+        {/* Contact Header Section */}
         <div className="bg-gray-100 text-center py-16" data-aos="fade-up">
           <h3 className="text-4xl text-emerald-800 font-bold pb-2">Contact Us</h3>
-          <p className="text-lg text-gray-600">
-            Request information regarding the available services and associated pricing.
-          </p>
+          <p className="text-lg text-gray-600">Request information regarding the available services and associated pricing.</p>
         </div>
 
-        {/* Main Content Section with fade-up animation */}
         <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
-          {/* Contact Information Section with fade-right animation */}
+          {/* Contact Information Section */}
           <div className="md:w-1/3 space-y-6" data-aos="fade-right" data-aos-delay="200">
             <h2 className="text-3xl font-bold text-gray-800">Get in Touch</h2>
-
             <div className="space-y-4">
-              {/* Email */}
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-emerald-800" />
                 <div>
                   <h3 className="text-xl font-semibold">Email</h3>
-                  <p className="text-gray-600">pierce@vandunkedits.com</p>
+                  <a href="mailto:pierce@vandunkedits.com" className="text-gray-600 hover:text-yellow-300">pierce@vandunkedits.com</a>
                 </div>
               </div>
-
-              {/* Phone */}
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-emerald-800" />
                 <div>
                   <h3 className="text-xl font-semibold">Phone</h3>
-                  <p className="text-gray-600">(845) 775-9351</p>
+                  <a href="tel:(845) 775-9351" className="text-gray-600 hover:text-yellow-300">(845) 775-9351</a>
                 </div>
               </div>
-
-              {/* Mailing Address */}
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-emerald-800" />
                 <div>
                   <h3 className="text-xl font-semibold">Mailing Address</h3>
-                  <p className="text-gray-600">
-                    Email, call, or text to request mailing address.
-                  </p>
+                  <p className="text-gray-600">Email, call, or text to request mailing address.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Contact Form Section with fade-left animation */}
+          {/* Contact Form Section */}
           <div className="md:w-2/3" data-aos="fade-left" data-aos-delay="400">
-            <form
-              onSubmit={handleSubmit}
-              className="bg-emerald-800 rounded-lg p-6 space-y-4 shadow-lg"
-            >
+            <form onSubmit={handleSubmit} className="bg-emerald-800 rounded-lg p-6 space-y-4 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   placeholder="Name"
                   className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   placeholder="Email Address"
                   className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
-
               <input
                 type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
                 placeholder="Subject"
                 className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
-
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
                 placeholder="Message"
                 rows={6}
                 className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
-
               <button
                 type="submit"
                 className="px-6 py-2 bg-yellow-200 text-emerald-800 rounded-md hover:bg-yellow-300 transition-colors duration-200 font-semibold"
@@ -104,6 +125,22 @@ const Contact = () => {
             </form>
           </div>
         </div>
+
+        {/* Popup Modal */}
+        {popupVisible && (
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-80">
+              <h2 className="text-xl font-semibold text-emerald-800">Thank You!</h2>
+              <p className="text-gray-600">Your message has been sent. We'll get back to you soon.</p>
+              <button
+                onClick={() => setPopupVisible(false)}
+                className="mt-4 px-6 py-2 bg-emerald-800 text-white rounded-md hover:bg-emerald-700 transition-colors duration-200"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

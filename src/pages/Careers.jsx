@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import career from '../assets/career.jpg'; // Ensure the image path is correct
 import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS styles
@@ -14,6 +14,11 @@ const Careers = () => {
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  // Refs for file inputs
+  const resumeInputRef = useRef(null);
+  const coverLetterInputRef = useRef(null);
+
+  // Handle input change for text inputs and file uploads
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
@@ -29,20 +34,53 @@ const Careers = () => {
     }
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('Form Submitted!', formData); // You can replace this with actual submission logic
+
+    // Open the confirmation popup
     setIsPopupOpen(true);
-    console.log('Form Submitted!', formData);
+
+    // Clear form data after submission, including files (resume and cover letter)
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      resume: null,
+      coverLetter: null,
+    });
+
+    // Clear the file inputs using refs
+    if (resumeInputRef.current) {
+      resumeInputRef.current.value = ''; // Clear the resume file input
+    }
+    if (coverLetterInputRef.current) {
+      coverLetterInputRef.current.value = ''; // Clear the cover letter file input
+    }
   };
 
+  // Close the popup
   const closePopup = () => {
     setIsPopupOpen(false);
   };
 
+  // Initialize AOS only once on component mount
   useEffect(() => {
-    AOS.init({ duration: 1000 }); // Initialize AOS with 1-second duration
-    AOS.refresh(); // Refresh AOS after content load
-  }, []);
+    // Initialize AOS only once on initial load
+    AOS.init({
+      duration: 1000,
+      once: true,  // This option ensures AOS animations happen only once
+    });
+
+    // Optionally, refresh AOS if you change content dynamically
+    AOS.refresh();
+    
+    return () => {
+      // Cleanup AOS instance when the component unmounts
+      AOS.refresh(); // You can call AOS.refresh() again here if necessary for cleanup
+    };
+  }, []); // Empty dependency array ensures this only runs once on mount
 
   return (
     <>
@@ -158,6 +196,7 @@ const Careers = () => {
           <div className="mb-4" data-aos="fade-up" data-aos-delay="900">
             <label htmlFor="resume" className="block text-sm font-medium text-gray-700">Resume</label>
             <input
+              ref={resumeInputRef}
               type="file"
               id="resume"
               name="resume"
@@ -171,6 +210,7 @@ const Careers = () => {
           <div className="mb-4" data-aos="fade-up" data-aos-delay="1000">
             <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700">Cover Letter</label>
             <input
+              ref={coverLetterInputRef}
               type="file"
               id="coverLetter"
               name="coverLetter"

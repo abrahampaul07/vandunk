@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import profile from "../assets/profile.jpeg";
 import Slider from "react-slick";
 import c1 from '../assets/c1.png';
@@ -121,10 +122,10 @@ const Home = () => {
           </div>
 
           {/* Learn More Button */}
-          <button className="px-6 py-3 mt-4 w-full border-2 border-emerald-800 text-emerald-800 text-lg font-semibold hover:bg-emerald-800 hover:text-white transition duration-300"
+          <Link to='/services' className="px-6 py-3 mt-4 w-full border-2 border-emerald-800 text-emerald-800 text-lg font-semibold hover:bg-emerald-800 hover:text-white transition duration-300"
             data-aos="fade-up" data-aos-duration="1500" data-aos-once="true">
             Learn More
-          </button>
+          </Link>
         </div>
       </div>
 
