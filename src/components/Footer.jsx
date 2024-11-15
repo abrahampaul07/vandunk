@@ -1,3 +1,4 @@
+// src/components/Footer.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"; // Assuming your logo is stored here
@@ -9,11 +10,10 @@ function Footer() {
       backgroundImage: `url(${backgroundImage})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      backgroundAttachment: 'fixed', // Optional: This can create a parallax effect
+      backgroundAttachment: 'fixed',
     }}>
       {/* Main content container */}
       <div className="flex flex-col md:flex-row justify-between p-6 bg-emerald-800 max-w-4xl md:mx-auto mx-2 rounded-lg shadow-lg">
-        
         {/* Left Side: Title and Description */}
         <div className="flex-1 mb-4 md:mb-0">
           <h1 className="text-3xl font-semibold text-white text-center md:text-left">Book an Appointment</h1>
@@ -35,7 +35,6 @@ function Footer() {
 
       {/* Footer Sections: Left, Middle, Right */}
       <div className="flex flex-col md:flex-row justify-between px-6 max-w-4xl mx-auto">
-
         {/* Left Section: Logo and Social Links */}
         <div className="flex-1 text-center md:text-left mb-6 md:mb-0">
           <div className="mb-0">
@@ -44,10 +43,10 @@ function Footer() {
           <div className="flex justify-center md:justify-start space-x-4">
             {/* Social Media Links with Font Awesome Icons */}
             <a href="https://www.youtube.com/channel/UCvAMNksSAbLpqVhSj17QhoQ" target="_blank" rel="noopener noreferrer" className="text-gray-800 text-xl hover:text-yellow-200">
-            <i class="fa-brands fa-youtube"></i>
+              <i className="fa-brands fa-youtube"></i>
             </a>
             <a href="https://www.linkedin.com/company/vandunk-edits/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="text-gray-800 text-xl hover:text-yellow-200">
-            <i class="fa-brands fa-linkedin-in"></i>
+              <i className="fa-brands fa-linkedin-in"></i>
             </a>
             <a href="https://www.instagram.com/p/C9xicQYObsn/" target="_blank" rel="noopener noreferrer" className="text-gray-800 text-xl hover:text-yellow-200">
               <i className="fab fa-instagram"></i>
@@ -78,7 +77,7 @@ function Footer() {
               <a href="/about" className="text-gray-700 hover:text-yellow-200">Academic Editing</a>
             </li>
             <li>
-              <a href="/services" className="text-gray-700 hover:text-yellow-200">Book Editing  </a>
+              <a href="/services" className="text-gray-700 hover:text-yellow-200">Book Editing</a>
             </li>
             <li>
               <a href="/contact" className="text-gray-700 hover:text-yellow-200">Ghostwriting</a>

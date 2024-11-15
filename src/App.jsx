@@ -11,11 +11,13 @@ import Footer from './components/Footer'
 import AcademicEditing from './components/AcademicEditing'
 import BookEditing from './components/BookEditing'
 import Contact from './components/Contact'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
