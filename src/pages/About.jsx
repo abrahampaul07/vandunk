@@ -80,10 +80,10 @@ const About = () => {
     <>
       <div className="bg-gray-100 text-center py-16" data-aos="fade-up" data-aos-once="true">
         <h3 className="text-4xl text-emerald-800 font-bold">Who are we</h3>
-        <p>About Pierce VanDunk and his team</p>
+        <p className="text-lg text-gray-600">About Pierce VanDunk and his team</p>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-between md:p-28 p-3 space-y-8 md:space-y-0">
+      <div className="flex flex-col md:flex-row items-center justify-between md:p-28 p-6 space-y-8 md:space-y-0 overflow-hidden">
         {/* Left Side: Image */}
         <div className="w-full md:w-1/2" data-aos="fade-right" data-aos-once="true">
           <img
@@ -99,7 +99,7 @@ const About = () => {
           <p className="mt-4 text-lg text-gray-600">
             Pierce VanDunk is an experienced editor, proofreader, and
             ghostwriter. As a Writing Consultant for the Nyack College Writing
-            Center he received extensive training in writing mechanics. Both
+            Center, he received extensive training in writing mechanics. Both
             undergraduate and graduate students brought their work to him for
             high-quality feedback. Since then, he has worked with several
             publishers, schools, and other organizations to help writers perfect
@@ -120,7 +120,7 @@ const About = () => {
 
       <div className="bg-gray-100 py-7" data-aos="fade-up" data-aos-once="true">
         <h3 className="text-4xl text-emerald-800 font-bold text-center">
-          Team
+          Meet Our Team
         </h3>
       </div>
 
@@ -141,7 +141,7 @@ const About = () => {
             </div>
 
             {/* Text Content */}
-            <div className="flex flex-col sm:text-left text-center">
+            <div className="flex flex-col sm:text-left text-center mt-4 sm:mt-0">
               <h4 className="text-xl font-bold text-gray-800">{item.title}</h4>
               <h3 className="text-lg font-semibold text-gray-600">{item.designation}</h3>
               <p className="text-gray-700 mt-2">{item.description}</p>

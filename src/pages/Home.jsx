@@ -83,7 +83,7 @@ const Home = () => {
       </div>
 
       {/* Left and Right Content Section */}
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-4 md:px-20 bg-gray-100">
+      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-4 md:px-20 bg-gray-100 overflow-x-hidden">
         {/* Left side */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left mb-6 md:mb-0"
           data-aos="fade-right" data-aos-offset="300" data-aos-duration="1000" data-aos-once="true">
