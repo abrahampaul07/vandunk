@@ -141,7 +141,7 @@ const Navbar = () => {
           </Link>
           {/* Mobile Book Appointment Button */}
           <Link
-            to="/book-appointment"
+            to="/book-an-appointment"
             onClick={handleLinkClick} // Close menu when clicked
             className="block bg-yellow-200 font-semibold text-dark py-2 px-4 rounded-lg hover:bg-gray-400 transition-all duration-300"
           >
