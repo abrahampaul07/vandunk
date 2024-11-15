@@ -11,19 +11,19 @@ const AcademicEditing = () => {
       id: 1, 
       text: 'Basic Academic Editing', 
       description: 'This package includes attention to grammar, punctuation, style, logical flow, formatting, citations, and more.',
-      route: '/contact' // Add a route key for navigation
+      route: '/book-an-appointment' // Add a route key for navigation
     },
     { 
       id: 2, 
       text: 'Developmental Thesis/Dissertation Editing', 
       description: 'This package provides coaching through all stages of the thesis/dissertation-writing process, including research, structure, grammar, punctuation, style, logical flow, formatting, citations, and more.',
-      route: '/contact' // Add a route key for navigation
+      route: '/book-an-appointment' // Add a route key for navigation
     },
     { 
       id: 3, 
       text: 'Premium Academic Editing—Refining Your Thesis/Dissertation into a Book Manuscript', 
       description: 'This package provides assistance with developing your dissertation into a book manuscript. In addition to the services included in the Basic and Developmental packages, this package includes one-on-one coaching up to one year. It also includes assistance with finding a literary agent, publisher, and writing mentorship clubs and networking opportunities.',
-      route: '/contact' // Add a route key for navigation
+      route: '/book-an-appointment' // Add a route key for navigation
     },
   ];
 

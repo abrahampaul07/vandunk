@@ -11,13 +11,13 @@ const BookEditing = () => {
       id: 1, 
       text: 'Without Coaching', 
       description: 'Provides feedback on completed manuscript, including editing content and the writing mechanics, for up to two revisions.',
-      route: '/contact' // Add a route key for navigation
+      route: '/book-an-appointment' // Add a route key for navigation
     },
     { 
       id: 2, 
       text: 'With Coaching', 
       description: 'Provides feedback on completed manuscript including editing content and the writing mechanics with unlimited virtual coaching sessions for up to 3 months.',
-      route: '/contact' // Add a route key for navigation
+      route: '/book-an-appointment' // Add a route key for navigation
     },
   ];
 
