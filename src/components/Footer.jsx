@@ -82,8 +82,8 @@ const Footer = ({ contactInfo }) => {
 
         {/* Center Section: Quick Links */}
         <div className="flex-1 text-center md:text-left mb-6 md:mb-0">
-          <h3 className="font-semibold text-white">Quick Links</h3>
-          <ul className="space-y-2 mt-4 text-white">
+          <h3 className="font-semibold text-dark">Quick Links</h3>
+          <ul className="space-y-2 mt-4 text-dark">
             <li>
               <Link to="/" className="hover:text-yellow-200">Home</Link>
             </li>
@@ -107,8 +107,8 @@ const Footer = ({ contactInfo }) => {
 
         {/* Right Section: Contact Information */}
         <div className="flex-1 text-center md:text-left">
-          <h3 className="font-semibold text-white">Contact Info</h3>
-          <ul className="mt-4 text-white">
+          <h3 className="font-semibold text-dark">Contact Info</h3>
+          <ul className="mt-4 text-dark">
             <li>
               <a href={`tel:${contactInfo.phone}`}>📞 {contactInfo.phone}</a>
             </li>

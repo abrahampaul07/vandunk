@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const Contact = () => {
   // State for form inputs
@@ -36,23 +35,28 @@ const Contact = () => {
     });
   };
 
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-    AOS.refresh();
-  }, []);
-
   return (
     <>
       <div className="overflow-x-hidden">
         {/* Contact Header Section */}
-        <div className="bg-gray-100 text-center py-16" data-aos="fade-up">
+        <motion.div
+          className="bg-gray-100 text-center py-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           <h3 className="text-4xl text-emerald-800 font-bold pb-2">Contact Us</h3>
           <p className="text-lg text-gray-600">Request information regarding the available services and associated pricing.</p>
-        </div>
+        </motion.div>
 
         <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
           {/* Contact Information Section */}
-          <div className="md:w-1/3 space-y-6" data-aos="fade-right" data-aos-delay="200">
+          <motion.div
+            className="md:w-1/3 space-y-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
             <h2 className="text-3xl font-bold text-gray-800">Get in Touch</h2>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -77,10 +81,15 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form Section */}
-          <div className="md:w-2/3" data-aos="fade-left" data-aos-delay="400">
+          <motion.div
+            className="md:w-2/3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
             <form onSubmit={handleSubmit} className="bg-emerald-800 rounded-lg p-6 space-y-4 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
@@ -123,12 +132,17 @@ const Contact = () => {
                 Submit
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
 
         {/* Popup Modal */}
         {popupVisible && (
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+          <motion.div
+            className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="bg-white p-8 rounded-lg shadow-lg w-80">
               <h2 className="text-xl font-semibold text-emerald-800">Thank You!</h2>
               <p className="text-gray-600">Your message has been sent. We'll get back to you soon.</p>
@@ -139,7 +153,7 @@ const Contact = () => {
                 Close
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </>

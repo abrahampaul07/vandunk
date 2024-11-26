@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import career from '../assets/career.jpg'; // Ensure the image path is correct
-import AOS from 'aos'; // Import AOS
-import 'aos/dist/aos.css'; // Import AOS styles
+import { motion } from 'framer-motion'; // Import Framer Motion
 
 const Careers = () => {
   const [formData, setFormData] = useState({
@@ -65,41 +64,39 @@ const Careers = () => {
     setIsPopupOpen(false);
   };
 
-  // Initialize AOS only once on component mount
-  useEffect(() => {
-    // Initialize AOS only once on initial load
-    AOS.init({
-      duration: 1000,
-      once: true,  // This option ensures AOS animations happen only once
-    });
-
-    // Optionally, refresh AOS if you change content dynamically
-    AOS.refresh();
-    
-    return () => {
-      // Cleanup AOS instance when the component unmounts
-      AOS.refresh(); // You can call AOS.refresh() again here if necessary for cleanup
-    };
-  }, []); // Empty dependency array ensures this only runs once on mount
-
   return (
     <>
       {/* Careers Heading Above the Image with fade-up animation */}
-      <div className="bg-gray-100 text-center py-16" data-aos="fade-up">
+      <motion.div
+        className="bg-gray-100 text-center py-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <h3 className="text-4xl text-emerald-800 font-bold">Careers</h3>
-      </div>
+      </motion.div>
 
       {/* Top Image with zoom-in animation */}
-      <div className="w-full" data-aos="zoom-in" data-aos-delay="200">
+      <motion.div
+        className="w-full"
+        initial={{ scale: 0.95 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
         <img
           src={career}
           alt="Career Image"
           className="w-full h-96 object-cover rounded-b-lg shadow-lg"
         />
-      </div>
+      </motion.div>
 
       {/* Content Section Below the Image with fade-up animation */}
-      <div className="bg-gray-100 py-16 px-6 md:px-16" data-aos="fade-up" data-aos-delay="400">
+      <motion.div
+        className="bg-gray-100 py-16 px-6 md:px-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.4 }}
+      >
         <div className="flex flex-col lg:flex-row items-center justify-center">
           {/* Content on the Right */}
           <div className="lg:w-2/3 text-center lg:text-left">
@@ -137,10 +134,15 @@ const Careers = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Form Section with fade-up animation */}
-      <div className="min-h-screen flex justify-center items-center bg-gray-100 py-10" data-aos="fade-up" data-aos-delay="500">
+      <motion.div
+        className="min-h-screen flex justify-center items-center bg-gray-100 py-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
         <form
           onSubmit={handleSubmit}
           className="bg-white p-8 rounded-lg shadow-xl max-w-lg w-full"
@@ -148,7 +150,12 @@ const Careers = () => {
           <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Apply Now</h2>
 
           {/* Name Input */}
-          <div className="mb-4" data-aos="fade-up" data-aos-delay="600">
+          <motion.div
+            className="mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+          >
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
             <input
               type="text"
@@ -160,10 +167,15 @@ const Careers = () => {
               placeholder="Enter your full name"
               required
             />
-          </div>
+          </motion.div>
 
           {/* Phone Number Input */}
-          <div className="mb-4" data-aos="fade-up" data-aos-delay="700">
+          <motion.div
+            className="mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
+          >
             <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
             <input
               type="text"
@@ -175,10 +187,15 @@ const Careers = () => {
               placeholder="Enter your phone number"
               required
             />
-          </div>
+          </motion.div>
 
           {/* Email Input */}
-          <div className="mb-4" data-aos="fade-up" data-aos-delay="800">
+          <motion.div
+            className="mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+          >
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
@@ -190,10 +207,15 @@ const Careers = () => {
               placeholder="Enter your email"
               required
             />
-          </div>
+          </motion.div>
 
           {/* Resume Upload */}
-          <div className="mb-4" data-aos="fade-up" data-aos-delay="900">
+          <motion.div
+            className="mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.9 }}
+          >
             <label htmlFor="resume" className="block text-sm font-medium text-gray-700">Resume</label>
             <input
               ref={resumeInputRef}
@@ -204,10 +226,15 @@ const Careers = () => {
               className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
             />
-          </div>
+          </motion.div>
 
           {/* Cover Letter Upload */}
-          <div className="mb-4" data-aos="fade-up" data-aos-delay="1000">
+          <motion.div
+            className="mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
             <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700">Cover Letter</label>
             <input
               ref={coverLetterInputRef}
@@ -218,7 +245,7 @@ const Careers = () => {
               className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
             />
-          </div>
+          </motion.div>
 
           {/* Submit Button */}
           <div className="mt-6">
@@ -230,11 +257,16 @@ const Careers = () => {
             </button>
           </div>
         </form>
-      </div>
+      </motion.div>
 
       {/* Stylish Popup with fade-in animation */}
       {isPopupOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50" data-aos="fade-in">
+        <motion.div
+          className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="bg-white p-8 rounded-lg shadow-xl w-96">
             <h2 className="text-2xl font-semibold text-center text-gray-800">Application Submitted!</h2>
             <p className="text-center text-gray-700 mt-4">Thank you for your interest in working with VanDunk Edits. We will review your application and get back to you soon.</p>
@@ -247,7 +279,7 @@ const Careers = () => {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

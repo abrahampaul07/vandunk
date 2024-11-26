@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
-import AOS from 'aos';  // Import AOS
-import 'aos/dist/aos.css';  // Import AOS CSS
+import { motion } from "framer-motion";  // Import Framer Motion
 
 const Services = () => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
@@ -10,26 +9,26 @@ const Services = () => {
     { 
       id: 1, 
       text: 'Academic Editing', 
-      description: 'These packages are designed to help students, professors, and researchers develop their ideas, polish their writing, and prepare papers and other written works for submission or publication.',
-      route: '/academic-editing' // Add a route key for navigation
+      description: 'Packages designed to help students, professors, and researchers polish their writing and prepare papers for submission or publication.',
+      route: '/academic-editing'
     },
     { 
       id: 2, 
       text: 'Book Editing', 
-      description: 'These packages are designed to help authors develop their ideas, polish their writing, and prepare manuscripts for publication.',
-      route: '/book-editing' // Add a route key for navigation
+      description: 'Packages for authors to develop ideas, refine writing, and prepare manuscripts for publication.',
+      route: '/book-editing'
     },
     { 
       id: 3, 
       text: 'Ghostwriting Elite Package', 
-      description: 'Do you have an idea for your book, but don’t like or have the time to write it? Do you need someone to do it for you? This package consists of 18 months of unlimited partnering sessions between you and the ghostwriter.',
-      route: '/book-an-appointment' // Add a route key for navigation
+      description: 'For those with an idea but no time or desire to write it themselves. Enjoy unlimited partnering sessions with a ghostwriter.',
+      route: '/book-an-appointment'
     },
     { 
       id: 4, 
       text: 'Doctoral Application Package', 
-      description: 'Need help applying to a doctoral program? The Doctoral Application Package provides assistance with all the written portions of your doctoral application.',
-      route: '/book-an-appointment' // Add a route key for navigation
+      description: 'Assistance with every written portion of your doctoral application, from personal statements to research proposals.',
+      route: '/book-an-appointment'
     },
   ];
 
@@ -39,56 +38,76 @@ const Services = () => {
     navigate(route); // Navigate to the specific route on click
   };
 
-  useEffect(() => {
-    AOS.init({ duration: 1000 });  // Initialize AOS with 1 second duration for animations
-    AOS.refresh();  // Refresh AOS to apply animations
-  }, []);
-
   return (
-    <>
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.8 }} // Fade-in animation for the entire page
+    >
       {/* Header Section */}
-      <div className="bg-gray-100 text-center py-16" data-aos="fade-up" data-aos-once="true">
-        <h3 className="text-4xl text-emerald-800 font-bold">Services</h3>
-      </div>
+      <motion.div 
+        className="bg-gray-100 text-center py-16"
+        initial={{ y: -50, opacity: 0 }} 
+        animate={{ y: 0, opacity: 1 }} 
+        transition={{ duration: 0.8 }}
+      >
+        <h3 className="text-4xl text-emerald-800 font-bold tracking-wider">Our Services</h3>
+      </motion.div>
 
       {/* Main Content Container */}
-      <div className="App container mx-auto p-8">
+      <motion.div 
+        className="container mx-auto p-8 bg-white rounded-lg shadow-lg"
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        transition={{ delay: 0.3, duration: 0.8 }}  // Fade-in for the entire content container
+      >
         {/* Loop through each circle and description pair */}
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {circles.map((circle) => (
-            <div key={circle.id} className="text-center" data-aos="fade-up" data-aos-delay={`${circle.id * 100}`} data-aos-once="true">
+            <motion.div
+              key={circle.id}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }} // Initial state for circle elements
+              animate={{ opacity: 1, y: 0 }}  // Fade and slide-in effect
+              transition={{ delay: circle.id * 0.2, duration: 0.6 }} // Delay the animations for each circle
+            >
               {/* Circle */}
-              <div
-                className="relative group w-60 h-60 bg-emerald-800 rounded-full flex items-center justify-center mx-auto cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-emerald-700"
+              <motion.div
+                className="relative group w-64 h-64 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full flex items-center justify-center mx-auto cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 hover:rotate-6 hover:bg-emerald-600 shadow-lg"
                 onMouseEnter={() => setHoveredCircle(circle.id)}
                 onMouseLeave={() => setHoveredCircle(null)}
                 onClick={() => handleClick(circle.route)} // Handle click to navigate
+                whileHover={{ scale: 1.1 }} // Scale and rotate effect on hover
+                transition={{ duration: 0.3 }} // Smooth hover effect transition for circle
               >
-                <span
-                  className={`text-white font-semibold text-xl transition-all duration-300 ${
-                    hoveredCircle === circle.id
-                      ? 'text-emerald-100' // Change text color when hovered
-                      : 'text-white'
-                  }`}
+                {/* Text inside the circle */}
+                <motion.span
+                  className={`text-white font-semibold text-2xl transition-all duration-300`}
+                  style={{
+                    color: hoveredCircle === circle.id ? '#d1fae5' : 'white',  // Change color on hover
+                    scale: hoveredCircle === circle.id ? 1.2 : 1, // Scale up text on hover
+                    opacity: hoveredCircle === circle.id ? 0.9 : 1, // Slightly reduce opacity on hover
+                  }}
+                  transition={{ duration: 0.3 }} // Smooth hover effect transition for text
                 >
-                  {/* Change hover text for the last two circles */}
-                  {hoveredCircle === circle.id
-                    ? circle.id === 3 || circle.id === 4
-                      ? 'Contact Us' // For id 3 and 4, show 'Contact Us'
-                      : 'Click for more details'
-                    : circle.text}
-                </span>
-              </div>
+                  {hoveredCircle === circle.id ? 'Explore More' : circle.text}
+                </motion.span>
+              </motion.div>
 
               {/* Description (Now below the circle) */}
-              <div className="mb-20">
-                <p className="text-gray-600">{circle.description}</p>
-              </div>
-            </div>
+              <motion.div 
+                className="mt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}  // Fade-in for description
+              >
+                <p className="text-gray-600 text-sm">{circle.description}</p>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
-      </div>
-    </>
+      </motion.div>
+    </motion.div>
   );
 };
 
