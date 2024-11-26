@@ -1,22 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [contactInfo, setContactInfo] = useState({
+    email: "",
+    phone: "",
+  });
 
   const handleLinkClick = () => {
     // Close the mobile menu when a link is clicked
     setIsMobileMenuOpen(false);
   };
 
+
+  useEffect(() => {
+    const fetchContactInfo = async () => {
+      try {
+        const response = await axios.get(
+          "https://sheets.googleapis.com/v4/spreadsheets/1u0J_BUI80HVtT8znRsaShOWzZYK-NzMZ40aK7gKtZJU/values:batchGet?ranges=contact&key=AIzaSyD_yKv_VQnArFPkiCGZyK_d1B0kI-O8cBk"
+        );
+
+        const contactData = response.data.valueRanges[0].values;
+
+        const contactInfo = {};
+        contactData.forEach((row) => {
+          if (row[0] && row[1]) {
+            contactInfo[row[0].toLowerCase()] = row[1];
+          }
+        });
+
+        setContactInfo(contactInfo);
+      } catch (error) {
+        console.log("Error fetching contact info", error);
+      }
+    };
+
+    fetchContactInfo();
+  }, []);
+
   return (
     <div>
       {/* Top section (phone and email) visible on all screen sizes */}
       <div className="bg-emerald-800 text-white py-2 px-4 flex justify-center md:justify-start items-center">
         <div className="text-sm flex flex-col md:flex-row md:space-x-4 text-center md:text-left">
-          <a href="tel:(845) 775-9351">📞 (845) 775-9351</a>
-          <a href="mailto:pierce@vandunkedits.com" className="mt-2 md:mt-0">📧 pierce@vandunkedits.com</a>
+          <a href={`tel:${contactInfo.phone}`}>📞 {contactInfo.phone || 'Loading...'}</a>
+          <a href={`mailto:${contactInfo.email}`} className="mt-2 md:mt-0">📧 {contactInfo.email || 'Loading...'}</a>
         </div>
       </div>
 
