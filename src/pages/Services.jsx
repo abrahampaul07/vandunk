@@ -5,30 +5,39 @@ import { motion } from "framer-motion";  // Import Framer Motion
 const Services = () => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
+  // Define circles with updated text and routes
   const circles = [
     { 
       id: 1, 
       text: 'Academic Editing', 
       description: 'Packages designed to help students, professors, and researchers polish their writing and prepare papers for submission or publication.',
-      route: '/academic-editing'
+      route: '/academic-editing',
+      buttonText: 'Explore More', // First two circles will show Explore More
+      hoverText: 'Explore More'  // Hover text for first two circles
     },
     { 
       id: 2, 
       text: 'Book Editing', 
       description: 'Packages for authors to develop ideas, refine writing, and prepare manuscripts for publication.',
-      route: '/book-editing'
+      route: '/book-editing',
+      buttonText: 'Explore More', // First two circles will show Explore More
+      hoverText: 'Explore More'  // Hover text for first two circles
     },
     { 
       id: 3, 
       text: 'Ghostwriting Elite Package', 
       description: 'For those with an idea but no time or desire to write it themselves. Enjoy unlimited partnering sessions with a ghostwriter.',
-      route: '/book-an-appointment'
+      route: '/book-an-appointment',
+      buttonText: 'Contact Us', // Last two circles will show Contact Us
+      hoverText: 'Contact Us'  // Hover text for last two circles
     },
     { 
       id: 4, 
       text: 'Doctoral Application Package', 
       description: 'Assistance with every written portion of your doctoral application, from personal statements to research proposals.',
-      route: '/book-an-appointment'
+      route: '/book-an-appointment',
+      buttonText: 'Contact Us', // Last two circles will show Contact Us
+      hoverText: 'Contact Us'  // Hover text for last two circles
     },
   ];
 
@@ -90,7 +99,7 @@ const Services = () => {
                   }}
                   transition={{ duration: 0.3 }} // Smooth hover effect transition for text
                 >
-                  {hoveredCircle === circle.id ? 'Explore More' : circle.text}
+                  {hoveredCircle === circle.id ? circle.hoverText : circle.text} {/* Dynamic hover text */}
                 </motion.span>
               </motion.div>
 
@@ -103,6 +112,18 @@ const Services = () => {
               >
                 <p className="text-gray-600 text-sm">{circle.description}</p>
               </motion.div>
+
+
+              
+              <div className="md:hidden block mt-2">
+                <button 
+                  onClick={() => handleClick(circle.route)}
+                  className="text-emerald-700 text-lg font-semibold hover:text-emerald-500"
+                >
+                  {circle.buttonText} {/* Show Explore More or Contact Us based on circle */}
+                </button>
+              </div>
+
             </motion.div>
           ))}
         </div>

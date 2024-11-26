@@ -81,6 +81,17 @@ const BookEditing = () => {
               <div className="mt-4">
                 <p className="text-gray-600 text-sm">{circle.description}</p>
               </div>
+
+
+        
+              <div className="md:hidden block mt-2">
+                <button 
+                  onClick={() => handleClick(circle.route)}
+                  className="bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-teal-700 transition-colors duration-300"
+                >
+                  Contact Us
+                </button>
+              </div>
             </motion.div>
           ))}
         </div>
