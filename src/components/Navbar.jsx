@@ -1,45 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+// src/components/Navbar.js
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
-const Navbar = () => {
+const Navbar = ({ contactInfo }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [contactInfo, setContactInfo] = useState({
-    email: "",
-    phone: "",
-  });
 
   const handleLinkClick = () => {
-    // Close the mobile menu when a link is clicked
     setIsMobileMenuOpen(false);
   };
-
-
-  useEffect(() => {
-    const fetchContactInfo = async () => {
-      try {
-        const response = await axios.get(
-          "https://sheets.googleapis.com/v4/spreadsheets/1u0J_BUI80HVtT8znRsaShOWzZYK-NzMZ40aK7gKtZJU/values:batchGet?ranges=contact&key=AIzaSyD_yKv_VQnArFPkiCGZyK_d1B0kI-O8cBk"
-        );
-
-        const contactData = response.data.valueRanges[0].values;
-
-        const contactInfo = {};
-        contactData.forEach((row) => {
-          if (row[0] && row[1]) {
-            contactInfo[row[0].toLowerCase()] = row[1];
-          }
-        });
-
-        setContactInfo(contactInfo);
-      } catch (error) {
-        console.log("Error fetching contact info", error);
-      }
-    };
-
-    fetchContactInfo();
-  }, []);
 
   return (
     <div>
@@ -64,120 +33,36 @@ const Navbar = () => {
 
             {/* Desktop navlinks (centered) */}
             <div className="hidden md:flex flex-grow justify-center space-x-8">
-              <Link
-                to="/"
-                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                About
-              </Link>
-              <Link
-                to="/success-stories"
-                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                Success Stories
-              </Link>
-              <Link
-                to="/services"
-                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                Services
-              </Link>
-              <Link
-                to="/courses"
-                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                Courses
-              </Link>
-              <Link
-                to="/careers"
-                className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                Careers
-              </Link>
+              <Link to="/" className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105">Home</Link>
+              <Link to="/about" className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105">About</Link>
+              <Link to="/success-stories" className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105">Success Stories</Link>
+              <Link to="/services" className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105">Services</Link>
+              <Link to="/courses" className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105">Courses</Link>
+              <Link to="/careers" className="text-gray-800 hover:text-emerald-800 transition-all duration-300 ease-in-out transform hover:scale-105">Careers</Link>
             </div>
 
             {/* Book an Appointment button on the right */}
             <div className="hidden md:flex">
-              <Link
-                to="/book-an-appointment"
-                className="bg-yellow-200 font-semibold text-dark py-2 px-4 rounded-lg hover:bg-gray-400 transition-all duration-300"
-              >
-                Book an Appointment
-              </Link>
+              <Link to="/book-an-appointment" className="bg-yellow-200 font-semibold text-dark py-2 px-4 rounded-lg hover:bg-gray-400 transition-all duration-300">Book an Appointment</Link>
             </div>
 
             {/* Mobile menu button */}
-            <button
-              className="text-2xl md:hidden text-gray-800 hover:text-blue-600 focus:outline-none transition-colors duration-300"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? "❌" : "☰"}
+            <button className="text-2xl md:hidden text-gray-800 hover:text-blue-600 focus:outline-none transition-colors duration-300" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? '❌' : '☰'}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`md:hidden bg-white text-center shadow-md py-0 px-6 transition-all duration-700 ease-in-out ${
-            isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
-          }`}
-        >
-          <Link
-            to="/"
-            onClick={handleLinkClick} // Close menu when clicked
-            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            Home
-          </Link>
-          <Link
-            to="/about"
-            onClick={handleLinkClick} // Close menu when clicked
-            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            About
-          </Link>
-          <Link
-            to="/success-stories"
-            onClick={handleLinkClick} // Close menu when clicked
-            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            Success Stories
-          </Link>
-          <Link
-            to="/services"
-            onClick={handleLinkClick} // Close menu when clicked
-            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            Services
-          </Link>
-          <Link
-            to="/courses"
-            onClick={handleLinkClick} // Close menu when clicked
-            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            Courses
-          </Link>
-          <Link
-            to="/careers"
-            onClick={handleLinkClick} // Close menu when clicked
-            className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            Careers
-          </Link>
+        <div className={`md:hidden bg-white text-center shadow-md py-0 px-6 transition-all duration-700 ease-in-out ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+          <Link to="/" onClick={handleLinkClick} className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">Home</Link>
+          <Link to="/about" onClick={handleLinkClick} className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">About</Link>
+          <Link to="/success-stories" onClick={handleLinkClick} className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">Success Stories</Link>
+          <Link to="/services" onClick={handleLinkClick} className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">Services</Link>
+          <Link to="/courses" onClick={handleLinkClick} className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">Courses</Link>
+          <Link to="/careers" onClick={handleLinkClick} className="block text-gray-800 hover:text-emerald-800 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">Careers</Link>
           {/* Mobile Book Appointment Button */}
-          <Link
-            to="/book-an-appointment"
-            onClick={handleLinkClick} // Close menu when clicked
-            className="block bg-yellow-200 font-semibold text-dark py-2 px-4 rounded-lg hover:bg-gray-400 transition-all duration-300"
-          >
-            Book an Appointment
-          </Link>
+          <Link to="/book-an-appointment" onClick={handleLinkClick} className="block bg-yellow-200 font-semibold text-dark py-2 px-4 rounded-lg hover:bg-gray-400 transition-all duration-300">Book an Appointment</Link>
         </div>
       </nav>
     </div>
